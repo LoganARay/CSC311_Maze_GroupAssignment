@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.shape.Circle?>
+<AnchorPane fx:id="mainPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="edu.farmingdale.csc311_maze_groupassignment.RobotController" prefHeight="400.0" prefWidth="600.0">
+    <ImageView fx:id="mazeView">
+        <Image fx:id="maze" url="@maze.png" backgroundLoading="true" preserveRatio="true"/>
+    </ImageView>
+    <ImageView fx:id="robotView" layoutY="260" layoutX="10">
+        <Image fx:id="robot" url="@robot.png"/>
+    </ImageView>
+    <Circle fx:id="c" radius="1"/>
+</AnchorPane>
