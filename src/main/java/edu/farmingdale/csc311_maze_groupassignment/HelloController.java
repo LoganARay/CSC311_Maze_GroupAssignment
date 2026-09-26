@@ -16,7 +16,8 @@ public class HelloController {
     }
 
     @FXML
-    protected void car(ActionEvent actionEvent) {
+    protected void car(ActionEvent actionEvent) throws Exception{
+        HelloApplication.setRoot("car.fxml");
     }
 
     @FXML
