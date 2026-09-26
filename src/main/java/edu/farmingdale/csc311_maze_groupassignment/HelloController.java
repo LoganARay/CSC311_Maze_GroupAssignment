@@ -21,6 +21,11 @@ public class HelloController {
     }
 
     @FXML
+    protected void openMazeTabs(ActionEvent actionEvent) throws Exception {
+        HelloApplication.setRoot("mazeTabs.fxml");
+    }
+
+    @FXML
     public void initialize() {
         welcomeText.setFont(new Font("Arial", 30));
     }

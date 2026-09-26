@@ -29,8 +29,10 @@ public class RobotController {
 
     @FXML
     public void initialize() {
-        if (scene != null) {
-            scene.setOnKeyPressed(event -> {
+        mainPane.setFocusTraversable(true);
+        javafx.application.Platform.runLater(mainPane::requestFocus);
+        mainPane.setOnMouseClicked(event -> mainPane.requestFocus());
+        mainPane.setOnKeyPressed(event -> {
                 PixelReader m= maze.getPixelReader();
                 if (event.getCode() == KeyCode.UP) {
                     if(m.getColor((int)robotView.getLayoutX(), (int)robotView.getLayoutY()-1).equals(m.getColor(0,0))
@@ -56,7 +58,9 @@ public class RobotController {
                         robotView.setLayoutX(robotView.getLayoutX()+1);
                     }
                 }
-            });
-        }
+                if (event.getCode().isArrowKey()) {
+                event.consume();
+            }
+        });
     }
 }
