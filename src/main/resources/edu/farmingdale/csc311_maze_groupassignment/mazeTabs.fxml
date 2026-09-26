@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane xmlns:fx="http://javafx.com/fxml">
+    <tabs>
+        <Tab text="Maze 1" closable="false">
+            <content>
+                <fx:include source="robot.fxml"/>
+            </content>
+        </Tab>
+        <Tab text="Maze 2" closable="false"/>
+    </tabs>
+</TabPane>

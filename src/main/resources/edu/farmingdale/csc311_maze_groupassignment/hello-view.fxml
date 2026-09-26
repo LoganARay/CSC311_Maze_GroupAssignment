@@ -17,4 +17,5 @@
     <Button text="Robot" onAction="#robot"/>
     <Button text="Car!" onAction="#car"/>
     </HBox>
+    <Button text="Open Mazes" onAction="#openMazeTabs"/>
 </VBox>
