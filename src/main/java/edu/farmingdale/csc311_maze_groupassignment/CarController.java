@@ -30,8 +30,11 @@ public class CarController {
 
         mainPane.getChildren().add(car);
 
-        if (scene != null) {
-            scene.setOnKeyPressed(event -> {
+        mainPane.setFocusTraversable(true);
+        javafx.application.Platform.runLater(mainPane::requestFocus);
+        mainPane.setOnMouseClicked(event -> mainPane.requestFocus());
+
+        mainPane.setOnKeyPressed(event -> {
                 if (event.getCode() == KeyCode.UP) {
                     moveCar(0, -SPEED, 270);
                 }
@@ -47,8 +50,10 @@ public class CarController {
                 if (event.getCode() == KeyCode.RIGHT) {
                     moveCar(SPEED, 0, 0);
                 }
-            });
-        }
+            if (event.getCode().isArrowKey()) {
+                event.consume();
+            }
+        });
     }
 
     private void moveCar(double dx, double dy, double rotation) {
