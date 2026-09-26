@@ -3,13 +3,13 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 
-<TabPane xmlns:fx="http://javafx.com/fxml">
+<TabPane focusTraversable="false" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26">
     <tabs>
-        <Tab text="Maze 1" closable="false">
+        <Tab closable="false" text="Maze 1">
             <content>
-                <fx:include source="robot.fxml"/>
+                <fx:include source="robot.fxml" />
             </content>
         </Tab>
-        <Tab text="Maze 2" closable="false"/>
+        <Tab closable="false" text="Maze 2" />
     </tabs>
 </TabPane>
