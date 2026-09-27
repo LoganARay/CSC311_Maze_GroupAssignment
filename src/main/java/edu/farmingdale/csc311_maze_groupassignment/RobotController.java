@@ -53,6 +53,11 @@ public class RobotController {
     @FXML
     private Button automaticButton;
 
+    @FXML
+    private Button resetButton;
+    private double startX;
+    private double startY;
+
     // Used so the controller knows which maze is currently loaded.
     private boolean maze2 = false;
 
@@ -62,6 +67,11 @@ public class RobotController {
 
     @FXML
     public void initialize() {
+
+        // Save the robot's initial position from robot.fxml.
+        // This makes Reset work even before the Robot button is pressed.
+        startX = robotView.getLayoutX();
+        startY = robotView.getLayoutY();
 
         /*
          * Keep the existing manual controls working.
@@ -271,6 +281,28 @@ public class RobotController {
         });
 
         automaticTimeline.play();
+    }
+
+    /*
+     * Puts the robot back at the original starting position.
+     */
+    @FXML
+    private void resetRobot() {
+
+        // Stop the automatic animation if it is currently running.
+        if (automaticTimeline != null) {
+            automaticTimeline.stop();
+        }
+
+        // Return the robot to the beginning of the maze.
+        robotView.setLayoutX(startX);
+        robotView.setLayoutY(startY);
+
+        // Make sure Automatic can be pressed again.
+        automaticButton.setDisable(false);
+
+        // Give keyboard control back to the maze.
+        mainPane.requestFocus();
     }
 
 
@@ -575,9 +607,13 @@ public class RobotController {
             double x,
             double y) {
 
-        robotView.setLayoutX(x);
+        // Save the beginning of this maze.
+        startX = x;
+        startY = y;
 
-        robotView.setLayoutY(y);
+        // Put the robot at the beginning.
+        robotView.setLayoutX(startX);
+        robotView.setLayoutY(startY);
     }
 
 
@@ -603,6 +639,10 @@ public class RobotController {
          * maze image is currently being displayed.
          */
         automaticButton.setLayoutY(
+                maze.getHeight() + 10
+        );
+
+        resetButton.setLayoutY(
                 maze.getHeight() + 10
         );
 

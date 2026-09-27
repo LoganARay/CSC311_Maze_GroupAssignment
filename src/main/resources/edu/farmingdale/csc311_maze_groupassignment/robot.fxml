@@ -35,4 +35,17 @@
                    -fx-font-weight: bold;
                    -fx-background-radius: 6;"/>
 
+    <Button fx:id="resetButton"
+            text="Reset"
+            layoutX="370"
+            layoutY="440"
+            prefWidth="90"
+            prefHeight="32"
+            focusTraversable="false"
+            onAction="#resetRobot"
+            style="-fx-background-color: #6c757d;
+               -fx-text-fill: white;
+               -fx-font-weight: bold;
+               -fx-background-radius: 6;"/>
+
 </AnchorPane>
