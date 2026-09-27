@@ -12,17 +12,57 @@ public class MazeTabsController {
     private StackPane maze1Content;
 
     @FXML
+    private StackPane maze2Content;
+
+    @FXML
+    public void initialize() {
+        try {
+            showVehicle("robot.fxml", "maze2.png", maze2Content, 22, 21);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void showRobot() throws IOException {
-        showVehicle("robot.fxml");
+        showVehicle("robot.fxml", "maze.png", maze1Content, 10, 260);
     }
 
     @FXML
     private void showCar() throws IOException {
-        showVehicle("car.fxml");
+        showVehicle("car.fxml", "maze.png", maze1Content, 10, 260);
     }
 
-    private void showVehicle(String fileName) throws IOException {
-        Parent view = FXMLLoader.load(getClass().getResource(fileName));
-        maze1Content.getChildren().setAll(view);
+    @FXML
+    private void showRobotMaze2() throws IOException {
+        showVehicle("robot.fxml", "maze2.png", maze2Content, 22, 21);
+    }
+
+    @FXML
+    private void showCarMaze2() throws IOException {
+        showVehicle("car.fxml", "maze2.png", maze2Content, 22, 21);
+    }
+
+    private void showVehicle(String fileName, String mazeFile,
+                             StackPane content, double startX, double startY) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
+        Parent view = loader.load();
+
+        Object controller = loader.getController();
+
+        if (controller instanceof RobotController) {
+            RobotController robotController = (RobotController) controller;
+            robotController.setMaze(mazeFile);
+            robotController.setStartPosition(startX, startY);
+        }
+
+        if (controller instanceof CarController) {
+            CarController carController = (CarController) controller;
+            carController.setMaze(mazeFile);
+            carController.setStartPosition(startX, startY);
+        }
+
+        content.getChildren().setAll(view);
     }
 }

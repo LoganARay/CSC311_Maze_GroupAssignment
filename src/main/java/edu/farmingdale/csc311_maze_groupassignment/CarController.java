@@ -98,6 +98,11 @@ public class CarController {
         return pixelReader.getColor(x, y).equals(pathColor);
     }
 
+    public void setStartPosition(double x, double y) {
+        car.setLayoutX(x);
+        car.setLayoutY(y);
+    }
+
     public void setMaze(String mazeFile) {
         maze = new Image(
                 getClass().getResource(mazeFile).toExternalForm()

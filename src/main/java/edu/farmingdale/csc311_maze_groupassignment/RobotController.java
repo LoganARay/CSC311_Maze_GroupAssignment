@@ -64,6 +64,11 @@ public class RobotController {
         });
     }
 
+    public void setStartPosition(double x, double y) {
+        robotView.setLayoutX(x);
+        robotView.setLayoutY(y);
+    }
+
     public void setMaze(String mazeFile) {
         maze = new Image(
                 getClass().getResource(mazeFile).toExternalForm()
