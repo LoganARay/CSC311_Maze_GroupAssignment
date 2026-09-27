@@ -25,6 +25,7 @@ public class CarController {
 
     private Car car;
     private static final double SPEED = 2;
+    private boolean maze2 = false;
 
     @FXML
     public void initialize() {
@@ -95,7 +96,19 @@ public class CarController {
             return false;
         }
 
-        return pixelReader.getColor(x, y).equals(pathColor);
+        Color pixelColor = pixelReader.getColor(x, y);
+
+        if (maze2) {
+            return !isBlueWall(pixelColor);
+        }
+
+        return pixelColor.equals(pathColor);
+    }
+
+    private boolean isBlueWall(Color color) {
+        return color.getBlue() > 0.7
+                && color.getRed() < 0.3
+                && color.getGreen() < 0.5;
     }
 
     public void setStartPosition(double x, double y) {
@@ -109,5 +122,7 @@ public class CarController {
         );
 
         mazeView.setImage(maze);
+
+        maze2 = mazeFile.equals("maze2.png");
     }
 }
