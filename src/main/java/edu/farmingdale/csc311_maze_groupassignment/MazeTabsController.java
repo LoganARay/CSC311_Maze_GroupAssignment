@@ -81,6 +81,14 @@ public class MazeTabsController {
             carController.setStartPosition(startX, startY);
         }
 
+        if (mazeFile.equals("maze2.png")) {
+            view.setScaleX(1.2);
+            view.setScaleY(1.2);
+
+            view.setTranslateX(50);
+            view.setTranslateY(45);
+        }
+
         content.getChildren().setAll(view);
     }
 
