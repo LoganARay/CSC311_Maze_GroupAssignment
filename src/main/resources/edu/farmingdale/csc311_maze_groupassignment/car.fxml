@@ -12,7 +12,7 @@
         xmlns:fx="http://javafx.com/fxml"
         fx:controller="edu.farmingdale.csc311_maze_groupassignment.CarController">
 
-    <ImageView>
+    <ImageView fx:id="mazeView">
         <Image fx:id="maze" url="@maze.png"/>
     </ImageView>
 

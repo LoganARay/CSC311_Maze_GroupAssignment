@@ -3,10 +3,12 @@ package edu.farmingdale.csc311_maze_groupassignment;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+
 
 import static edu.farmingdale.csc311_maze_groupassignment.HelloApplication.scene;
 
@@ -17,6 +19,9 @@ public class CarController {
 
     @FXML
     private Image maze;
+
+    @FXML
+    private ImageView mazeView;
 
     private Car car;
     private static final double SPEED = 2;
@@ -91,5 +96,13 @@ public class CarController {
         }
 
         return pixelReader.getColor(x, y).equals(pathColor);
+    }
+
+    public void setMaze(String mazeFile) {
+        maze = new Image(
+                getClass().getResource(mazeFile).toExternalForm()
+        );
+
+        mazeView.setImage(maze);
     }
 }

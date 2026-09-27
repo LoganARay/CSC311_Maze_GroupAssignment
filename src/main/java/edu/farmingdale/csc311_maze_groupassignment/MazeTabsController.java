@@ -12,6 +12,9 @@ public class MazeTabsController {
     private StackPane maze1Content;
 
     @FXML
+    private StackPane maze2Content;
+
+    @FXML
     private void showRobot() throws IOException {
         showVehicle("robot.fxml");
     }

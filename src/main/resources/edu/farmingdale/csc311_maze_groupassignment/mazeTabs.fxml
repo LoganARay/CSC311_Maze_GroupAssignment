@@ -26,6 +26,30 @@
             </VBox>
             </content>
         </Tab>
-        <Tab closable="false" text="Maze 2" />
+
+        <Tab closable="false" text="Maze 2">
+            <content>
+                <VBox spacing="8.0">
+                    <children>
+                        <HBox spacing="8.0">
+                            <children>
+                                <Button mnemonicParsing="false"
+                                        onAction="#showRobotMaze2"
+                                        text="Robot" />
+
+                                <Button mnemonicParsing="false"
+                                        onAction="#showCarMaze2"
+                                        text="Car" />
+                            </children>
+                        </HBox>
+
+                        <StackPane fx:id="maze2Content">
+
+                        </StackPane>
+                    </children>
+                </VBox>
+            </content>
+        </Tab>
+
     </tabs>
 </TabPane>

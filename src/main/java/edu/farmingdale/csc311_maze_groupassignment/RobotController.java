@@ -63,4 +63,12 @@ public class RobotController {
             }
         });
     }
+
+    public void setMaze(String mazeFile) {
+        maze = new Image(
+                getClass().getResource(mazeFile).toExternalForm()
+        );
+
+        mazeView.setImage(maze);
+    }
 }
