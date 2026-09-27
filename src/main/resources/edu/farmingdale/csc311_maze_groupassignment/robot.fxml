@@ -17,4 +17,22 @@
         <Image fx:id="robot" url="@robot.png"/>
     </ImageView>
     <Circle fx:id="c" radius="1"/>
+    <!--
+       Automatic button.
+       Its vertical position will also be adjusted by RobotController
+       depending on which maze is currently displayed.
+   -->
+    <Button fx:id="automaticButton"
+            text="Automatic"
+            layoutX="250"
+            layoutY="440"
+            prefWidth="110"
+            prefHeight="32"
+            focusTraversable="false"
+            onAction="#playAutomatic"
+            style="-fx-background-color: #28a745;
+                   -fx-text-fill: white;
+                   -fx-font-weight: bold;
+                   -fx-background-radius: 6;"/>
+
 </AnchorPane>
