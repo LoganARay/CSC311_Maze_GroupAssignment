@@ -9,7 +9,7 @@
 
 <TabPane focusTraversable="false" prefHeight="500.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_maze_groupassignment.MazeTabsController">
     <tabs>
-        <Tab closable="false" text="Maze 1">
+        <Tab fx:id="maze1Tab" closable="false" text="Maze 1">
             <content>
                 <VBox spacing="8.0">
                <children>
@@ -27,7 +27,7 @@
             </content>
         </Tab>
 
-        <Tab closable="false" text="Maze 2">
+        <Tab fx:id="maze2Tab" closable="false" text="Maze 2">
             <content>
                 <VBox spacing="8.0">
                     <children>

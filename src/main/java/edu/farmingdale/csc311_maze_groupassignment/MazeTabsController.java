@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.control.Tab;
 
 import java.io.IOException;
 
@@ -15,12 +16,29 @@ public class MazeTabsController {
     private StackPane maze2Content;
 
     @FXML
+    private Tab maze1Tab;
+
+    @FXML
+    private Tab maze2Tab;
+
+    @FXML
     public void initialize() {
         try {
             showVehicle("robot.fxml", "maze2.png", maze2Content, 22, 21);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        maze1Tab.setOnSelectionChanged(event -> {
+            if (maze1Tab.isSelected()) {
+                focusMaze(maze1Content);
+            }
+        });
+        maze2Tab.setOnSelectionChanged(event -> {
+            if (maze2Tab.isSelected()) {
+                focusMaze(maze2Content);
+            }
+        });
     }
 
     @FXML
@@ -64,5 +82,13 @@ public class MazeTabsController {
         }
 
         content.getChildren().setAll(view);
+    }
+
+    private void focusMaze(StackPane content) {
+        javafx.application.Platform.runLater(() -> {
+            if (!content.getChildren().isEmpty()) {
+                content.getChildren().get(0).requestFocus();
+            }
+        });
     }
 }
