@@ -26,6 +26,7 @@ public class RobotController {
     public ImageView robotView;
     @FXML
     public Image robot;
+    private boolean maze2 = false;
 
     @FXML
     public void initialize() {
@@ -35,26 +36,26 @@ public class RobotController {
         mainPane.setOnKeyPressed(event -> {
                 PixelReader m= maze.getPixelReader();
                 if (event.getCode() == KeyCode.UP) {
-                    if(m.getColor((int)robotView.getLayoutX(), (int)robotView.getLayoutY()-1).equals(m.getColor(0,0))
-                            && (m.getColor((int)robotView.getLayoutX() + 25, (int)robotView.getLayoutY()-1).equals(m.getColor(0,0)))){
+                    if(isPath(m, (int)robotView.getLayoutX(), (int)robotView.getLayoutY()-1)
+                            && isPath(m, (int)robotView.getLayoutX() + 25, (int)robotView.getLayoutY()-1)){
                         robotView.setLayoutY(robotView.getLayoutY()-1);
                     }
                 }
                 if (event.getCode() == KeyCode.DOWN) {
-                    if(m.getColor((int)robotView.getLayoutX(), (int)robotView.getLayoutY()+26).equals(m.getColor(0,0))
-                            && (m.getColor((int)robotView.getLayoutX() + 25, (int)robotView.getLayoutY()+26).equals(m.getColor(0,0)))){
+                    if(isPath(m, (int)robotView.getLayoutX(), (int)robotView.getLayoutY()+26)
+                            && isPath(m, (int)robotView.getLayoutX() + 25, (int)robotView.getLayoutY()+26)){
                         robotView.setLayoutY(robotView.getLayoutY()+1);
                     }
                 }
                 if (event.getCode() == KeyCode.LEFT) {
-                    if(m.getColor((int)robotView.getLayoutX()-1, (int)robotView.getLayoutY()).equals(m.getColor(0,0))
-                            && (m.getColor((int)robotView.getLayoutX() -1, (int)robotView.getLayoutY()+25).equals(m.getColor(0,0)))){
+                    if(isPath(m, (int)robotView.getLayoutX()-1, (int)robotView.getLayoutY())
+                            && isPath(m, (int)robotView.getLayoutX()-1, (int)robotView.getLayoutY()+25)){
                         robotView.setLayoutX(robotView.getLayoutX()-1);
                     }
                 }
                 if (event.getCode() == KeyCode.RIGHT) {
-                    if(m.getColor((int)robotView.getLayoutX() + 26, (int)robotView.getLayoutY()).equals(m.getColor(0,0))
-                    && (m.getColor((int)robotView.getLayoutX() + 26, (int)robotView.getLayoutY()+25).equals(m.getColor(0,0)))){
+                    if(isPath(m, (int)robotView.getLayoutX()+26, (int)robotView.getLayoutY())
+                            && isPath(m, (int)robotView.getLayoutX()+26, (int)robotView.getLayoutY()+25)){
                         robotView.setLayoutX(robotView.getLayoutX()+1);
                     }
                 }
@@ -75,5 +76,28 @@ public class RobotController {
         );
 
         mazeView.setImage(maze);
+
+        maze2 = mazeFile.equals("maze2.png");
+    }
+
+    private boolean isPath(PixelReader pixelReader, int x, int y) {
+
+        if (x < 0 || y < 0 || x >= maze.getWidth() || y >= maze.getHeight()) {
+            return false;
+        }
+
+        Color pixelColor = pixelReader.getColor(x, y);
+
+        if (maze2) {
+            return !isBlueWall(pixelColor);
+        }
+
+        return pixelColor.equals(pixelReader.getColor(0, 0));
+    }
+
+    private boolean isBlueWall(Color color) {
+        return color.getBlue() > 0.7
+                && color.getRed() < 0.3
+                && color.getGreen() < 0.5;
     }
 }
