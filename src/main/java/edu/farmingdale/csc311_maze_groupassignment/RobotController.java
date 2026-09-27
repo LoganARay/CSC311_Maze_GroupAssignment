@@ -25,6 +25,9 @@ public class RobotController {
     // The robot is approximately 26 x 26 pixels.
     private static final int ROBOT_SIZE = 26;
 
+    // Robot manual movement speed.
+    private static final int SPEED = 4;
+
     /*
      * How quickly the robot moves during automatic mode.
      *
@@ -55,6 +58,7 @@ public class RobotController {
 
     @FXML
     private Button resetButton;
+
     private double startX;
     private double startY;
 
@@ -94,17 +98,17 @@ public class RobotController {
                 if (isPath(
                         m,
                         (int) robotView.getLayoutX(),
-                        (int) robotView.getLayoutY() - 1)
+                        (int) robotView.getLayoutY() - SPEED)
 
                         &&
 
                         isPath(
                                 m,
                                 (int) robotView.getLayoutX() + 25,
-                                (int) robotView.getLayoutY() - 1)) {
+                                (int) robotView.getLayoutY() - SPEED)) {
 
                     robotView.setLayoutY(
-                            robotView.getLayoutY() - 1
+                            robotView.getLayoutY() - SPEED
                     );
                 }
             }
@@ -115,17 +119,17 @@ public class RobotController {
                 if (isPath(
                         m,
                         (int) robotView.getLayoutX(),
-                        (int) robotView.getLayoutY() + 26)
+                        (int) robotView.getLayoutY() + 25 + SPEED)
 
                         &&
 
                         isPath(
                                 m,
                                 (int) robotView.getLayoutX() + 25,
-                                (int) robotView.getLayoutY() + 26)) {
+                                (int) robotView.getLayoutY() + 25 + SPEED)) {
 
                     robotView.setLayoutY(
-                            robotView.getLayoutY() + 1
+                            robotView.getLayoutY() + SPEED
                     );
                 }
             }
@@ -135,18 +139,18 @@ public class RobotController {
 
                 if (isPath(
                         m,
-                        (int) robotView.getLayoutX() - 1,
+                        (int) robotView.getLayoutX() - SPEED,
                         (int) robotView.getLayoutY())
 
                         &&
 
                         isPath(
                                 m,
-                                (int) robotView.getLayoutX() - 1,
+                                (int) robotView.getLayoutX() - SPEED,
                                 (int) robotView.getLayoutY() + 25)) {
 
                     robotView.setLayoutX(
-                            robotView.getLayoutX() - 1
+                            robotView.getLayoutX() - SPEED
                     );
                 }
             }
@@ -156,18 +160,18 @@ public class RobotController {
 
                 if (isPath(
                         m,
-                        (int) robotView.getLayoutX() + 26,
+                        (int) robotView.getLayoutX() + 25 + SPEED,
                         (int) robotView.getLayoutY())
 
                         &&
 
                         isPath(
                                 m,
-                                (int) robotView.getLayoutX() + 26,
+                                (int) robotView.getLayoutX() + 25 + SPEED,
                                 (int) robotView.getLayoutY() + 25)) {
 
                     robotView.setLayoutX(
-                            robotView.getLayoutX() + 1
+                            robotView.getLayoutX() + SPEED
                     );
                 }
             }
@@ -282,6 +286,7 @@ public class RobotController {
 
         automaticTimeline.play();
     }
+
 
     /*
      * Puts the robot back at the original starting position.
@@ -635,7 +640,7 @@ public class RobotController {
 
 
         /*
-         * Keep the button directly underneath whichever
+         * Keep the buttons directly underneath whichever
          * maze image is currently being displayed.
          */
         automaticButton.setLayoutY(
@@ -648,7 +653,7 @@ public class RobotController {
 
         /*
          * Make enough room in the AnchorPane for the maze
-         * plus the button.
+         * plus the buttons.
          */
         mainPane.setPrefHeight(
                 maze.getHeight() + 55

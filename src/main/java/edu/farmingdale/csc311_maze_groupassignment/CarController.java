@@ -53,7 +53,7 @@ public class CarController {
 
     private Car car;
 
-    private static final double SPEED = 2;
+    private static final double SPEED = 4;
 
     private boolean maze2 = false;
 
