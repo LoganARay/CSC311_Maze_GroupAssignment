@@ -3,10 +3,12 @@ package edu.farmingdale.csc311_maze_groupassignment;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+
 
 import static edu.farmingdale.csc311_maze_groupassignment.HelloApplication.scene;
 
@@ -18,8 +20,12 @@ public class CarController {
     @FXML
     private Image maze;
 
+    @FXML
+    private ImageView mazeView;
+
     private Car car;
     private static final double SPEED = 2;
+    private boolean maze2 = false;
 
     @FXML
     public void initialize() {
@@ -90,6 +96,33 @@ public class CarController {
             return false;
         }
 
-        return pixelReader.getColor(x, y).equals(pathColor);
+        Color pixelColor = pixelReader.getColor(x, y);
+
+        if (maze2) {
+            return !isBlueWall(pixelColor);
+        }
+
+        return pixelColor.equals(pathColor);
+    }
+
+    private boolean isBlueWall(Color color) {
+        return color.getBlue() > 0.7
+                && color.getRed() < 0.3
+                && color.getGreen() < 0.5;
+    }
+
+    public void setStartPosition(double x, double y) {
+        car.setLayoutX(x);
+        car.setLayoutY(y);
+    }
+
+    public void setMaze(String mazeFile) {
+        maze = new Image(
+                getClass().getResource(mazeFile).toExternalForm()
+        );
+
+        mazeView.setImage(maze);
+
+        maze2 = mazeFile.equals("maze2.png");
     }
 }
