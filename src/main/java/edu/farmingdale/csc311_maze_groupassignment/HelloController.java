@@ -1,6 +1,6 @@
 package edu.farmingdale.csc311_maze_groupassignment;
 
-import edu.farmingdale.csc311_maze_groupassignment.HelloApplication;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,7 +14,10 @@ public class HelloController {
     protected void robot(ActionEvent actionEvent) throws Exception{
         HelloApplication.setRoot("robot.fxml");
     }
-
+    @FXML
+    private void exit() {
+       Platform.exit();
+    }
     @FXML
     protected void car(ActionEvent actionEvent) throws Exception{
         HelloApplication.setRoot("car.fxml");
